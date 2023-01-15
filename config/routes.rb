@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :products, only: [:index, :create, :show, :update, :destroy]
+      resources :users, only: [:index, :create, :show, :update, :destroy]
+      resources :orders, only: [:index, :create, :show, :update, :destroy]
+      resources :addresses, only: [:index, :create, :show, :update, :destroy]
+      resources :reviews, only: [:index, :create, :show, :update, :destroy]
+      resources :categories, only: [:index, :create, :show, :update, :destroy]
+      resources :farmer, only: [:index, :create, :show, :update, :destroy]
+      resources :payment, only: [:index, :create, :show, :update, :destroy]
+      resources :inventory, only: [:index, :create, :show, :update, :destroy]
+    end
+  end
 end
