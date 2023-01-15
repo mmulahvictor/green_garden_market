@@ -1,24 +1,59 @@
-# README
+# GreenGardenMarket API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Products
 
-Things you may want to cover:
+### List products
 
-* Ruby version
+`GET /products`
 
-* System dependencies
+Retrieves a list of all products available for purchase.
 
-* Configuration
+#### Query Parameters
 
-* Database creation
+| Name | Type | Description |
+|------|------|-------------|
+| category_id | integer | Filters products by category |
+| farmer_id | integer | Filters products by farmer |
+| name | string | Filters products by name |
 
-* Database initialization
+#### Example
 
-* How to run the test suite
+GET /products?category_id=1
 
-* Services (job queues, cache servers, search engines, etc.)
+200 OK
 
-* Deployment instructions
+[
+{
+"id": 1,
+"name": "Apple",
+"description": "A juicy and delicious apple",
+"price": "1.99",
+"image": "https://example.com/apple.jpg",
+"farmer_id": 1,
+"category_id": 1
+},
+{
+"id": 2,
+"name": "Banana",
+"description": "A sweet and creamy banana",
+"price": "0.99",
+"image": "https://example.com/banana.jpg",
+"farmer_id": 2,
+"category_id": 1
+}
+]
 
-* ...
+### Create product
+
+`POST /products`
+
+Creates a new product.
+
+#### Request Body
+
+| Name | Type | Description |
+|------|------|-------------|
+| name | string | The name of the product |
+| description | string | A description of the product |
+| price | decimal | The price of the product |
+| image | string | The URL of the product image |
