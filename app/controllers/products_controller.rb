@@ -3,7 +3,7 @@ class Api::V1::ProductsController < ApplicationController
   before_action :set_product, only: [:show, :update, :destroy]
 
   def index
-    @products = Product.all
+    @products = policy_scope(Product)
     render json: @products
   end
 
@@ -22,6 +22,7 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def update
+    authorize @product
     if @product.update(product_params)
       render json: @product
     else
