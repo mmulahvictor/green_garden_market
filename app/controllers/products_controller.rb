@@ -4,6 +4,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def index
     @products = policy_scope(Product)
+    expires_in 3.hour, public: true
     render json: @products
   end
 
@@ -18,6 +19,9 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def show
+    @product = cache ["v1", @product], expires_in: 3.hour do
+      @product.to_json
+    end
     render json: @product
   end
 

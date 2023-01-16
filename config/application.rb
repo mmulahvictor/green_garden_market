@@ -13,6 +13,12 @@ module GreenGardenMarket
 
     config.middleware.use Rack::Attack
 
+    config.lograge.enabled = true
+    config.lograge.custom_options = lambda do |event|
+      params = event.payload[:params].except('controller', 'action')
+      { "params" => params }
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
