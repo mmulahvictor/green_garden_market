@@ -45,6 +45,7 @@ gem "bootsnap", require: false
 gem 'devise_token_auth'
 gem 'rack-attack'
 gem 'lograge'
+gem 'devise'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
